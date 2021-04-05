@@ -1,3 +1,14 @@
-<h1>Make a new account!</h1>
+<h1>Make a new sesh!</h1>
 
-<form action=""></form>
+<form action="<%=session_url%>" method= "post">
+    <label>Username
+        <input type="text" name="user[username]" value="<%= @user.username %>">
+    </label>
+    <br>
+    <label>Password
+        <input type="password" name="user[password]" value= "">
+    </label>
+    <br>
+    <input type="submit" value="Login">
+
+</form>
