@@ -1,4 +1,7 @@
 class CatsController < ApplicationController
+  
+  before_action :require_cat_ownership, only: [:edit, :update]
+  
   def index
     @cats = Cat.all
     render :index

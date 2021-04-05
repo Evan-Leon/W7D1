@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
         session[:session_token] = user.reset_session_token
     end
 
+    def logged_in?
+        !!current_user
+    end
+
     # def require_logged_in
     #     redirect_to new_session_url unless logged_in?
         
@@ -17,5 +21,12 @@ class ApplicationController < ActionController::Base
     def require_logged_out
         redirect_to cats_url if logged_in?
         
+    end
+
+    def require_cat_ownership
+        current_cat = Cat.find(params[:id])
+        if !current_user.cats.include?(current_cat)
+            redirect_to cats_url 
+        end
     end
 end
